@@ -1,0 +1,6 @@
+CREATE TABLE Students(id INTEGER PRIMARY KEY AUTOINCREMENT,name ,birth_date DATETIME,email,phone_num INTEGER UNIQUE,gender BOOLEAN);
+CREATE TABLE Courses(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,category TEXT);
+CREATE TABLE Teachers(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,email TEXT,phone_num INTEGER UNIQUE,degree TEXT,gender BOOLEAN);
+CREATe TABLE CourseTeacher(id INTEGER PRIMARY KEY AUTOINCREMENT,course,teacher,start_date DATETIME,end_date DATETIME, FOREIGN KEY (course) REFERENCES Courses(id),FOREIGN KEY (teacher) REFERENCES Teachers(id));
+CREATE TABLE CourseStudents(id INTEGER PRIMARY KEY AUTOINCREMENT,student,course,FOREIGN KEY (course) REFERENCES CourseTeacher(id),FOREIGN KEY (student) REFERENCES Students(id));
+CREATE TABLE Sessions(id INTEGER PRIMARY KEY AUTOINCREMENT,course,room_num INTEGER,date DATETIME,start_time,end_time,FOREIGN KEY (course) REFERENCES CourseTeacher(id));
